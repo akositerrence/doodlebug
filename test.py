@@ -5,22 +5,39 @@ import time
 
 from pid import control
 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BOARD)    # Set GPIO mode to board
 
-target_temp = 110
-target_pressure = 50
+spi_a = spidev.SpiDev()       # Initialize SPI thermocouple a
+spi_a.max_speed_hz = 500000   
 
-heating_pad = 22
-enter_cooling_valve = 24
-exit_cooling_valve = 26
-enter_gas_solenoid = 28
-exit_gas_solenoid = 30
+spi_b = spidev.SpiDev()       # Initialize SPI thermocouple b
+spi_b.max_speed_hz = 500000   
 
-GPIO.setup(heating_pad, GPIO.OUT)
+enter_cooling_valve = 16    # GPIO 23
+exit_cooling_valve = 18     # GPIO 24
+enter_gas_solenoid = 32     # GPIO 12
+exit_gas_solenoid = 36      # GPIO 16
+
+thermocouple_so_a = 21      # GPIO 9 ( SPI0 MISO )
+
+thermocouple_cs_a = 24      # GPIO 8 ( SPI0 CE0 )
+thermocouple_sck_a = 23     # GPIO 11 ( SPI0 SCLK )
+
+thermocouple_so_b = 21      # GPIO 9 ( SPI0 MISO )
+thermocouple_cs_b = 26      # GPIO 7 ( SPI0 CE1 )
+thermocouple_sck_b = 23     # GPIO 11 ( SPI0 SCLK )
+
+transducer = 0 # UNKNOWN
+flow = 0 # UNKNOWN
+
 GPIO.setup(enter_cooling_valve, GPIO.OUT)
 GPIO.setup(exit_cooling_valve, GPIO.OUT)
 GPIO.setup(enter_gas_solenoid, GPIO.OUT)
 GPIO.setup(exit_gas_solenoid, GPIO.OUT)
+
+GPIO.setup(thermocouple_so_a , GPIO.OUT)
+GPIO.setup(thermocouple_cs_a, GPIO.OUT)
+GPIO.setup(thermocouple_sck_a, GPIO.OUT)
 
 def pause_resume():
 
@@ -32,29 +49,6 @@ def print_data():
 
 
 def temperature_cycle(cycle_number):
-    read_sensors()
-    time.sleep(0.5)
-
-    GPIO.output(enter_cooling_valve, False)
-    time.sleep(0.5)
-
-    GPIO.output(exit_cooling_valve, False)
-    time.sleep(0.5)
-
-    if pid.output > 0 and current_temp < ( target_temp-1 ):
-        GPIO.output(heating_pad, True)
-    elif pid.output < 0 and current_temp > ( target_temp+1 ):
-
-
-    while thermocouple1 <= target_temp:
-        GPIO.output(heating_pad, True)
-        time.sleep(0.5) #PID stuff
-    GPIO.output(heating_pad, False)
-    
-    while pressure < target_pressure:
-        GPIO.output(enter_gas_solenoid, True)
-        time.sleep(0.5) #PID stuff
-    GPIO.output(enter_gas_solenoid, False)
 
 
 if __name__ == "__main__":
