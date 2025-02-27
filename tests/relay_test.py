@@ -41,3 +41,5 @@ def test_relay():
 
 setup()
 test_relay()
+
+GPIO.cleanup()
