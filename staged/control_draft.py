@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import spidev
-import embedded.thermocouple as thermocouple
+import staged.thermocouple as thermocouple
 import time
 
 from simple_pid import PID
