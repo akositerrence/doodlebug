@@ -5,24 +5,26 @@ import time
 GPIO.setmode(GPIO.BOARD)
 
 spi_a = spidev.SpiDev()
-thermocouple_so_a = 21      # GPIO 9 ( SPI0 MISO )
-thermocouple_cs_a = 24      # GPIO 8 ( SPI0 CE0 )
-thermocouple_sck_a = 23     # GPIO 11 ( SPI0 SCLK )
+spi_a.open(0,0)
+spi_a.max_speed_hz = 500000
 
-def setup():
-    GPIO.setup(thermocouple_so_a, GPIO.OUT)
-    GPIO.setup(thermocouple_cs_a, GPIO.OUT, initial = GPIO.HIGH)
-    GPIO.setup(thermocouple_sck_a, GPIO.OUT, initial = GPIO.LOW)
+def read_test():
+    raw = spi_a.xfer2([0x00, 0x00])
+    value = (raw[0] << 8) | raw[1]
 
-def test_thermocouple():
-    GPIO.output(thermocouple_cs_a, GPIO.LOW)
-    GPIO.output(thermocouple_sck_a, GPIO.HIGH)
-    test = GPIO.input(thermocouple_so_a)
-    GPIO.output(thermocouple_sck_a, GPIO.LOW)
+    if value & 0x4:
+        return None
+    
+    return raw
 
-    return test
+i = 0
+while i < 10:
+    raw_data = read_test()
+    if raw_data is not None:
+        print(raw_data)
+    else:
+        print('not connected')
+    time.sleep(0.1)
+    i = i +1
 
-setup()
-print(test_thermocouple()) 
-
-GPIO.cleanup()
+spi_a.close()
