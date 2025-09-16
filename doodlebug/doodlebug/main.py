@@ -1,5 +1,18 @@
 import tkinter as tk
-import random
+import RPi.GPIO as GPIO
+import spidev
+import time
+
+GPIO.setmode(GPIO.BOARD)
+
+spi_bus = spidev.SpiDev()
+spi_bus.open(0,0)
+spi_bus.max_speed_hz = 500000
+
+ent_cooling_valve = 16      # GPIO 23
+ext_cooling_valve = 18      # GPIO 24
+ent_gas_valve = 32          # GPIO 12
+ext_gas_valve = 36          # GPIO 16
 
 class ControlPanel(tk.Tk):
     def __init__(self):
@@ -83,21 +96,37 @@ class ControlPanel(tk.Tk):
         
     def update_sensors(self):
 
-        tc1 = 
-        tc2 = 
-        pressure = 
-        flow = 
+        tc1 = self.read_thermocouples()
+        # pressure = 
+        # flow = 
 
         self.tc1_label.config(text=f"Thermocouple 1: {tc1} °C")
-        self.tc2_label.config(text=f"Thermocouple 2: {tc2} °C")
-        self.pressure_label.config(text=f"Pressure: {pressure} kPa")
-        self.flow_label.config(text=f"Flow: {flow} L/min")
+        # self.pressure_label.config(text=f"Pressure: {pressure} kPa")
+        # self.flow_label.config(text=f"Flow: {flow} L/min")
 
         self.after(1000, self.update_sensors)
     
+    def read_thermocouples():
+        raw = spi_bus.xfer2([0x00, 0x00])
+        value = (raw[0] << 8 | raw[1])
+        temperature = (value >> 3) * 0.25
+        return temperature
+    
+    def relay_setup():
+        GPIO.setup(ent_cooling_valve, GPIO.OUT)
+        GPIO.setup(ext_cooling_valve, GPIO.OUT)
+        GPIO.setup(ent_gas_valve, GPIO.OUT)
+        GPIO.setup(ext_gas_valve, GPIO.OUT)
+
+    def startup():
+        GPIO.output(ent_cooling_valve, 0)
+        GPIO.output(ext_cooling_valve, 0)
+        GPIO.output(ent_gas_valve, 0)
+        GPIO.output(ext_gas_valve, 0)
+    
 def run():
     root = ControlPanel()
-    root.title("Doodlebug Beverages")
+    root.title("Control Panel")
     root.mainloop()
      
 if __name__ == "__main__":

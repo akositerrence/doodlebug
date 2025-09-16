@@ -13,14 +13,14 @@ ext_cooling_valve = 18      # GPIO 24
 ent_gas_valve = 32          # GPIO 12
 ext_gas_valve = 36          # GPIO 16
 
-flow_sensor = 0
-pressure_sensor = 0
+# flow_sensor = 0
+# pressure_sensor = 0
 
-def read_flow():
-    GPIO.input(flow_sensor, GPIO.IN)
+# def read_flow():
+#     GPIO.input(flow_sensor, GPIO.IN)
     
-def read_pressure():
-    GPIO.input(pressure_sensor, GPIO.IN)
+# def read_pressure():
+#     GPIO.input(pressure_sensor, GPIO.IN)
 
 def relay_setup():
     GPIO.setup(ent_cooling_valve, GPIO.OUT)
@@ -39,6 +39,9 @@ def startup():
     GPIO.output(ext_cooling_valve, 0)
     GPIO.output(ent_gas_valve, 0)
     GPIO.output(ext_gas_valve, 0)
+
+relay_setup()
+tc1 = read_thermocouples()
 
 GPIO.cleanup()
 spi_bus.close()
