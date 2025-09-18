@@ -1,3 +1,4 @@
+from simple_pid import PID
 import RPi.GPIO as GPIO
 import spidev
 import time
@@ -30,18 +31,18 @@ def relay_setup():
     GPIO.setup(ext_gas_valve, GPIO.OUT)
     GPIO.setup(heating_pad, GPIO.OUT)
 
-def read_thermocouples():
-    raw = spi_bus.xfer2([0x00, 0x00])
-    value = (raw[0] << 8 | raw[1])
-    temperature = (value >> 3) * 0.25
-    return temperature
-
 def startup():
     GPIO.output(ent_cooling_valve, 0)
     GPIO.output(ext_cooling_valve, 0)
     GPIO.output(ent_gas_valve, 0)
     GPIO.output(ext_gas_valve, 0)
     GPIO.output(heating_pad, 0)
+    
+def read_thermocouples():
+    raw = spi_bus.xfer2([0x00, 0x00])
+    value = (raw[0] << 8 | raw[1])
+    temperature = (value >> 3) * 0.25
+    return temperature
     
 def close_relay(solenoid_number: int):
     match solenoid_number: # DOUBLE CHECK
@@ -68,6 +69,23 @@ def open_relay(solenoid_number: int):
             GPIO.output(ext_gas_valve, 0)
         case 5:
             GPIO.output(heating_pad, 0)
+     
+def heat(target_temp, cycle_time):
+    pid = PID(1, 1, 1, setpoint = target_temp)    
+    pid.output_limits = (32, 110)
+    
+    current_temp = 0
+    duty_cycle = pid(current_temp)
+    on_time = (duty_cycle / 100) * cycle_time
+    off_time = cycle_time - on_time
+    if on_time > 0:
+            GPIO.output(heating_pad, GPIO.HIGH)
+            time.sleep(on_time)
+    if off_time > 0:
+        GPIO.output(heating_pad, GPIO.LOW)
+        time.sleep(off_time)
+    if off_time == cycle_time:
+        None
             
 relay_setup()
 tc1 = read_thermocouples()
