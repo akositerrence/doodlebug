@@ -7,10 +7,15 @@ import spidev, time
 
 GPIO.setmode(GPIO.BOARD)
 
-spi = spidev.SpiDev()
-spi.open(0, 1)                 
-spi.mode = 0
-spi.max_speed_hz = 5_000_000
+spi_tc1 = spidev.SpiDev()
+spi_tc1.open(0, 0)                 
+spi_tc1.mode = 0
+spi_tc1.max_speed_hz = 5_000_000
+
+spi_tc2 = spidev.SpiDev()
+spi_tc2.open(0, 1)                 
+spi_tc2.mode = 0
+spi_tc2.max_speed_hz = 5_000_000
 
 class ControlPanel(tk.Tk):
     def __init__(self):
@@ -104,17 +109,19 @@ class ControlPanel(tk.Tk):
             embedded.open_relay(4)
         
     def update_sensors(self):
-        tc1 = self.read_thermocouples()
+        tc1 = self.read_thermocouples(spi_tc1)
+        tc2 = self.read_thermocouples(spi_tc2)
         # pressure = 
         # flow = 
         self.tc1_label.config(text=f"Thermocouple 1: {tc1} °C")
+        self.tc2_label.config(text=f"Thermocouple 2: {tc2} °C")
         # self.pressure_label.config(text=f"Pressure: {pressure} kPa")
         # self.flow_label.config(text=f"Flow: {flow} L/min")
 
         self.after(1000, self.update_sensors)
     
-    def read_thermocouples(self):
-        raw = spi.readbytes(4)
+    def read_thermocouples(self, spi_tc):
+        raw = spi_tc.readbytes(4)
         val = (raw[0]<<24)|(raw[1]<<16)|(raw[2]<<8)|raw[3]
 
         if (val >> 16) & 1:
