@@ -3,6 +3,12 @@ import time
 import embedded
 
 import RPi.GPIO as GPIO
+import spidev, time
+
+spi = spidev.SpiDev()
+spi.open(0, 1)                 
+spi.mode = 0
+spi.max_speed_hz = 5_000_000
 
 GPIO.setmode(GPIO.BOARD)
 
@@ -106,6 +112,27 @@ class ControlPanel(tk.Tk):
         # self.flow_label.config(text=f"Flow: {flow} L/min")
 
         self.after(1000, self.update_sensors)
+    
+    def read_thermocouples():
+        raw = spi.readbytes(4)
+        val = (raw[0]<<24)|(raw[1]<<16)|(raw[2]<<8)|raw[3]
+
+        if (val >> 16) & 1:
+            oc  = bool((val >> 2) & 1)
+            scg = bool((val >> 1) & 1)
+            scv = bool(val & 1)
+            raise RuntimeError(f"Fault: open={oc}, short_gnd={scg}, short_vcc={scv}")
+
+        tc = (val >> 18) & 0x3FFF
+        if tc & 0x2000: tc -= 0x4000
+        tc_c = tc * 0.25
+
+        # Internal (cold junction): bits 15..4, signed, 0.0625 °C/LSB
+        # cj = (val >> 4) & 0x0FFF
+        # if cj & 0x800: cj -= 0x1000
+        # cj_c = cj * 0.0625
+
+        return tc_c
     
 def run():
     ### LOOP STARTUP ###
