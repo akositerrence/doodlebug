@@ -5,12 +5,12 @@ import embedded
 import RPi.GPIO as GPIO
 import spidev, time
 
+GPIO.setmode(GPIO.BOARD)
+
 spi = spidev.SpiDev()
 spi.open(0, 1)                 
 spi.mode = 0
 spi.max_speed_hz = 5_000_000
-
-GPIO.setmode(GPIO.BOARD)
 
 class ControlPanel(tk.Tk):
     def __init__(self):
@@ -83,8 +83,7 @@ class ControlPanel(tk.Tk):
         self.max_pressure_entry.insert(0, "15")
         
         ### LOOP ###
-
-        self.after(250, self.update_sensors())
+        self.after(250, self.update_sensors)
 
     def toggle_solenoid(self, index):
         self.solenoid_states[index] = not self.solenoid_states[index]

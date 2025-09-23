@@ -1,4 +1,3 @@
-
 import RPi.GPIO as GPIO
 import spidev
 import time
@@ -47,6 +46,3 @@ def open_relay(solenoid_number: int):
             GPIO.output(ent_gas_valve, 0)
         case 4:
             GPIO.output(ext_gas_valve, 0)
-            
-relay_setup()
-GPIO.cleanup()
