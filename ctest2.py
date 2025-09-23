@@ -4,6 +4,7 @@ import spidev
 import RPi.GPIO as GPIO
 
 # ---- Edit these if your wiring differs ----
+GPIO.cleanup()
 BOARD_CS   = 29   # your current CS on BOARD 29 (GPIO5)
 # SCK must be on SPI0 SCLK (BOARD 23 / GPIO11)
 # SO must be on SPI0 MISO (BOARD 21 / GPIO9)
@@ -14,8 +15,8 @@ GPIO.setup(BOARD_CS, GPIO.OUT, initial=GPIO.HIGH)
 spi = spidev.SpiDev()
 spi.open(0, 0)           # SPI0; device index is irrelevant since we disable HW CS
 spi.mode = 0
-spi.max_speed_hz = 5_000_000
-spi.no_cs = True         # <<< IMPORTANT: we'll drive CS ourselves
+spi.max_speed_hz = 5_000_000 
+# spi.no_cs = True         # <<< IMPORTANT: we'll drive CS ourselves
 
 def read_once():
     # assert CS low, read 4 bytes, deassert CS

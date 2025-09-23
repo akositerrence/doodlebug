@@ -5,10 +5,6 @@ import time
 
 GPIO.setmode(GPIO.BOARD)
 
-cs = 29     # GPIO 5
-so = 21     # GPIO 9
-sck = 23    # GPIO 11
-
 ent_cooling_valve = 16      # GPIO 23
 ext_cooling_valve = 18      # GPIO 24
 ent_gas_valve = 32          # GPIO 12

@@ -84,11 +84,12 @@ class ControlPanel(tk.Tk):
         
         ### LOOP ###
 
+        self.after(250, self.update_sensors())
+
     def toggle_solenoid(self, index):
         self.solenoid_states[index] = not self.solenoid_states[index]
         color = "green" if self.solenoid_states[index] else "red"
         self.solenoid_labels[index].config(bg=color)
-        embedded.close_relay(index + 1)
         if self.solenoid_states[index]:
             embedded.close_relay(index + 1)
         else:
@@ -113,7 +114,7 @@ class ControlPanel(tk.Tk):
 
         self.after(1000, self.update_sensors)
     
-    def read_thermocouples():
+    def read_thermocouples(self):
         raw = spi.readbytes(4)
         val = (raw[0]<<24)|(raw[1]<<16)|(raw[2]<<8)|raw[3]
 
