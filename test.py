@@ -1,6 +1,6 @@
 from max31855 import MAX31855, MAX31855Error
 
-cs_pin=24
+cs_pin=26
 clock_pin=23
 data_pin=22
 unit="f"

@@ -1,0 +1,50 @@
+sr/bin/python "/home/terrence/Documents/Accelerator Project/doodlebug/ctest.py"
+Trying combos (bus,dev,mode,speedHz)…
+
+(bus=0, dev=0, mode=0, speed=1000000)
+  raw1=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+  raw2=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+
+(bus=0, dev=0, mode=0, speed=5000000)
+  raw1=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+  raw2=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+
+(bus=0, dev=0, mode=1, speed=1000000)
+  raw1=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+  raw2=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+
+(bus=0, dev=0, mode=1, speed=5000000)
+  raw1=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+  raw2=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+
+(bus=0, dev=1, mode=0, speed=1000000)
+  raw1=[1, 116, 22, 224]  val=0x017416E0
+    tc=23.25 °C  cj=22.88 °C  faults={'fault_flag': False}
+  raw2=[1, 116, 22, 224]  val=0x017416E0
+    tc=23.25 °C  cj=22.88 °C  faults={'fault_flag': False}
+
+(bus=0, dev=1, mode=0, speed=5000000)
+  raw1=[1, 116, 22, 224]  val=0x017416E0
+    tc=23.25 °C  cj=22.88 °C  faults={'fault_flag': False}
+  raw2=[1, 116, 22, 224]  val=0x017416E0
+    tc=23.25 °C  cj=22.88 °C  faults={'fault_flag': False}
+
+(bus=0, dev=1, mode=1, speed=1000000)
+  raw1=[1, 116, 22, 224]  val=0x017416E0
+    tc=23.25 °C  cj=22.88 °C  faults={'fault_flag': False}
+  raw2=[1, 116, 22, 224]  val=0x017416E0
+    tc=23.25 °C  cj=22.88 °C  faults={'fault_flag': False}
+
+(bus=0, dev=1, mode=1, speed=5000000)
+  raw1=[1, 116, 22, 224]  val=0x017416E0
+    tc=23.25 °C  cj=22.88 °C  faults={'fault_flag': False}
+  raw2=[1, 116, 22, 224]  val=0x017416E0
+    tc=23.25 °C  cj=22.88 °C  faults={'fault_flag': False}

@@ -2,6 +2,10 @@ import tkinter as tk
 import time
 import embedded
 
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BOARD)
+
 class ControlPanel(tk.Tk):
     def __init__(self):
         super().__init__()

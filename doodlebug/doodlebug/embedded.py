@@ -5,7 +5,7 @@ import time
 
 GPIO.setmode(GPIO.BOARD)
 
-cs = 24     # GPIO 7
+cs = 29     # GPIO 5
 so = 21     # GPIO 9
 sck = 23    # GPIO 11
 
@@ -32,9 +32,6 @@ def relay_setup():
     # GPIO.setup(heating_pad, GPIO.OUT)
 
 def sensor_setup():
-    cs = 29     # GPIO 6
-    so = 21     # GPIO 9
-    sck = 23    # GPIO 11
     GPIO.setup(sck, GPIO.OUT)
     GPIO.setup(cs, GPIO.OUT)
     GPIO.setup(so, GPIO.IN)
