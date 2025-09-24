@@ -128,7 +128,7 @@ class ControlPanel(tk.Tk):
             oc  = bool((val >> 2) & 1)
             scg = bool((val >> 1) & 1)
             scv = bool(val & 1)
-            raise RuntimeError(f"Fault: open={oc}, short_gnd={scg}, short_vcc={scv}")
+            # raise RuntimeError(f"Fault: open={oc}, short_gnd={scg}, short_vcc={scv}")
 
         tc = (val >> 18) & 0x3FFF
         if tc & 0x2000: tc -= 0x4000

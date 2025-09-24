@@ -1,0 +1,100 @@
+terrence@raspberrypi:~/Documents/Accelerator Project/doodlebug $ /usr/bin/python "/home/terrence/Documents/Accelerator Project/doodlebug/ctest.py"
+Trying combos (bus,dev,mode,speedHz)…
+
+(bus=0, dev=0, mode=0, speed=1000000)
+  raw1=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+  raw2=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+
+(bus=0, dev=0, mode=0, speed=5000000)
+  raw1=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+  raw2=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+
+(bus=0, dev=0, mode=1, speed=1000000)
+  raw1=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+  raw2=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+
+(bus=0, dev=0, mode=1, speed=5000000)
+  raw1=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+  raw2=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+
+(bus=0, dev=1, mode=0, speed=1000000)
+  raw1=[1, 96, 21, 208]  val=0x016015D0
+    tc=22.00 °C  cj=21.81 °C  faults={'fault_flag': False}
+  raw2=[1, 96, 21, 208]  val=0x016015D0
+    tc=22.00 °C  cj=21.81 °C  faults={'fault_flag': False}
+
+(bus=0, dev=1, mode=0, speed=5000000)
+  raw1=[1, 96, 21, 208]  val=0x016015D0
+    tc=22.00 °C  cj=21.81 °C  faults={'fault_flag': False}
+  raw2=[1, 96, 21, 208]  val=0x016015D0
+    tc=22.00 °C  cj=21.81 °C  faults={'fault_flag': False}
+
+(bus=0, dev=1, mode=1, speed=1000000)
+  raw1=[1, 96, 21, 208]  val=0x016015D0
+    tc=22.00 °C  cj=21.81 °C  faults={'fault_flag': False}
+  raw2=[1, 96, 21, 208]  val=0x016015D0
+    tc=22.00 °C  cj=21.81 °C  faults={'fault_flag': False}
+
+(bus=0, dev=1, mode=1, speed=5000000)
+  raw1=[1, 96, 21, 208]  val=0x016015D0
+    tc=22.00 °C  cj=21.81 °C  faults={'fault_flag': False}
+  raw2=[1, 96, 21, 208]  val=0x016015D0
+    tc=22.00 °C  cj=21.81 °C  faults={'fault_flag': False}
+terrence@raspberrypi:~/Documents/Accelerator Project/doodlebug $ /usr/bin/python "/home/terrence/Documents/Accelerator Project/doodlebug/ctest.py"
+Trying combos (bus,dev,mode,speedHz)…
+
+(bus=0, dev=0, mode=0, speed=1000000)
+  raw1=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+  raw2=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+
+(bus=0, dev=0, mode=0, speed=5000000)
+  raw1=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+  raw2=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+
+(bus=0, dev=0, mode=1, speed=1000000)
+  raw1=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+  raw2=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+
+(bus=0, dev=0, mode=1, speed=5000000)
+  raw1=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+  raw2=[0, 0, 0, 0]  val=0x00000000
+    tc=0.00 °C  cj=0.00 °C  faults={'fault_flag': False}
+
+(bus=0, dev=1, mode=0, speed=1000000)
+  raw1=[1, 96, 21, 176]  val=0x016015B0
+    tc=22.00 °C  cj=21.69 °C  faults={'fault_flag': False}
+  raw2=[1, 96, 21, 176]  val=0x016015B0
+    tc=22.00 °C  cj=21.69 °C  faults={'fault_flag': False}
+
+(bus=0, dev=1, mode=0, speed=5000000)
+  raw1=[1, 96, 21, 176]  val=0x016015B0
+    tc=22.00 °C  cj=21.69 °C  faults={'fault_flag': False}
+  raw2=[1, 96, 21, 176]  val=0x016015B0
+    tc=22.00 °C  cj=21.69 °C  faults={'fault_flag': False}
+
+(bus=0, dev=1, mode=1, speed=1000000)
+  raw1=[1, 96, 21, 176]  val=0x016015B0
+    tc=22.00 °C  cj=21.69 °C  faults={'fault_flag': False}
+  raw2=[1, 96, 21, 176]  val=0x016015B0
+    tc=22.00 °C  cj=21.69 °C  faults={'fault_flag': False}
+
+(bus=0, dev=1, mode=1, speed=5000000)
+  raw1=[1, 96, 21, 176]  val=0x016015B0
+    tc=22.00 °C  cj=21.69 °C  faults={'fault_flag': False}
+  raw2=[1, 96, 21, 176]  val=0x016015B0
+    tc=22.00 °C  cj=21.69 °C  faults={'fault_flag': False}
